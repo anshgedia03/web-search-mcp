@@ -87,6 +87,7 @@ SEARXNG_URL="http://127.0.0.1:8080" node build/index.js --sse --port 3000
 ```
 
 Endpoints:
+- `GET /healthz` returns `200 OK` for Render health checks
 - `GET /` or `GET /sse` establishes the SSE stream
 - `POST /message?sessionId=...` receives client messages
 

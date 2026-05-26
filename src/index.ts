@@ -190,6 +190,13 @@ class WebSearchServer {
 
         const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
 
+        if (req.method === 'GET' && url.pathname === '/healthz') {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          res.end('ok');
+          return;
+        }
+
         if (req.method === 'GET' && (url.pathname === '/sse' || url.pathname === '/')) {
           const transport = new SSEServerTransport('/message', res);
           transports.set(transport.sessionId, transport);
